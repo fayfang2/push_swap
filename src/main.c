@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/12 07:43:37 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/14 17:33:09 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int main(int argc, char **argv)
 		sort_five(stack_a, instr);
 	else
 		sort_chunks(stack_a, instr);
-	print_queues(stack_a);
+	printf("\n");
+	print_queue(stack_a);
 	print_instr(instr);
 	free_stack(stack_a);
 	free_instr(instr);
