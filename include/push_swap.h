@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:26:44 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/14 16:50:31 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/15 07:47:50 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,5 +161,6 @@ void	print_queue(t_queue *queue);
 void	print_queues(t_queue *queue);
 void	print_values(long *val, size_t	size);
 void	print_chunk(t_chunk *chunk, t_queue *queue);
+void	final_check(t_queue *queue);
 
 #endif

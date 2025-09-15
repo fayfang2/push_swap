@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:16:57 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/14 16:35:51 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/15 07:16:47 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	move(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr)
 	stack = set_stack(src, queue);
 	other = stack->other;
 	if (src->flag == dest->flag && src->loc == dest->loc)
+	{
+		dest->size++;
 		return ;
+	}
 	if (src->loc == bottom && (dest->loc == top || (dest->flag != src->flag)))
 		q_revrotate(stack, instr);
 	if (src->flag != dest->flag)
@@ -73,7 +76,7 @@ void	sort_top(t_queue *queue, size_t size, t_print *instr)
 	long	*val;
 	size_t	max;
 
-	max = 4;
+	max = (queue->size < 4) ? queue->size : 4;
 	val = set_values(queue, max);
 	if (check_sorted(val, max))
 		return (free(val));

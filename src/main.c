@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/14 17:33:09 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/15 07:49:13 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 	else
 		sort_chunks(stack_a, instr);
 	printf("\n");
+	final_check(stack_a);
 	print_queue(stack_a);
 	print_instr(instr);
 	free_stack(stack_a);
@@ -59,6 +60,21 @@ t_queue	*init_stack(size_t size, char **argv, t_flag c)
 	else if (c == b)
 		init_queue(stack, size, NULL, c);
 	return (stack);	
+}
+
+void	final_check(t_queue *queue)
+{
+	size_t i;
+	long	nbr;
+
+	i = 0;
+	while (i < queue->size)
+	{
+		nbr = queue->queue[(queue->head + i) % queue->max];
+		if (nbr != (long)i)
+			error_msg("Error: stack is not sorted.\n", queue, NULL, NULL);
+		i++;
+	}
 }
 
 void	print_queue(t_queue *queue)
