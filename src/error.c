@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:18:11 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/11 19:30:18 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/16 07:06:56 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	free_instr(t_print	*instr)
 void	free_chunk(t_chunk *chunk)
 {
 	if (chunk->min)
-		free(chunk->min);
+		free_chunk(chunk->min);
 	if (chunk->mid)
-		free(chunk->mid);
+		free_chunk(chunk->mid);
 	if (chunk->max)
-		free(chunk->max);
+		free_chunk(chunk->max);
 	free(chunk);
 }
 

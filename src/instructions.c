@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 20:43:32 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 07:37:31 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/15 11:16:54 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ t_print	*init_instr(size_t size)
 	else
 		instr->size = 10000;
 	instr->instructions = ft_calloc(instr->size, sizeof(char *));
-	if (!init_ops(instr))
-		error_msg("Error: failed to initiate ops.\n", NULL, instr, NULL);
 	if (!instr->instructions)
 		error_msg("Error: failed to initiate instr.\n", NULL, instr, NULL);
+	if (!init_ops(instr))
+		error_msg("Error: failed to initiate ops.\n", NULL, instr, NULL);
 	return (instr);
 }
 int init_ops(t_print *instr)
@@ -68,16 +68,26 @@ void	add_instr(t_print *instr, char *operation)
 	}
 }
 
-void	print_instr(t_print *instr)
+/* t_print	*optimise_instr(t_print *instr)
 {
 	size_t	i;
+	t_print	*opti;
+
 
 	i = 0;
+	opti = ft_calloc(sizeof(t_print), 1);
+	if (!opti)
+		error_msg("Error: failed to allocate memory for opti.\n", NULL, instr, NULL);
+		
+	opti->size = instr->size;
+	opti->operations = ft_calloc(instr->size, sizeof(char *));
+	if (!opti->instructions)
+		error_msg("Error: failed to initiate instr.\n", NULL, instr, NULL);
+	if (!init_ops(opti))
+		error_msg("Error: failed to initiate opti ops.\n", NULL, instr, NULL);	
 	while (i < instr->count)
 	{
-		ft_printf("%s\n", instr->instructions[i]);
-		i++;
+		
 	}
-	printf("Instructions: %ld\n", instr->count);
-	return ;
-}
+} */
+

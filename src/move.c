@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:16:57 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 07:16:47 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/16 10:01:23 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,14 @@ void	move_back(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr)
 
 void	sort_two(t_queue *queue, t_print *instr)
 {
-	long	*val;
-	size_t	size;
+	long	first;
+	long	second;
 
-	size = 2;
-	val = set_values(queue, size);
-	if ((queue->flag == a && val[0] > val[1]) || 
-		(queue->flag == b && val[0] < val[1]))
+	first = queue->queue[queue->head];
+	second = queue->queue[(queue->head + 1) % queue->max];
+	if ((queue->flag == a && first > second) || 
+		(queue->flag == b && first <second))
 		q_swap(queue, instr);
-	free(val);
 }
 
 void	sort_top(t_queue *queue, size_t size, t_print *instr)
@@ -77,20 +76,23 @@ void	sort_top(t_queue *queue, size_t size, t_print *instr)
 	size_t	max;
 
 	max = (queue->size < 4) ? queue->size : 4;
-	val = set_values(queue, max);
+	val = ft_calloc(sizeof(long), max);
+	if (!val)
+		return (free(val));
+	set_values(queue, val, max);
 	if (check_sorted(val, max))
 		return (free(val));
 	sort_two(queue, instr);
-	val = set_values(queue, max);
+	set_values(queue, val, max);
 	if (check_sorted(val, max))
 		return (free(val));
 	q_push(queue, instr);
 	sort_two(queue, instr);
-	val = set_values(queue, max);
+	set_values(queue, val, max);
 	if (!(val[2] > val[1]) && size > 3)
 	{
 		q_push(queue, instr);
-		sort_two(queue, instr);
+		q_swap(queue, instr);
 		sort_two(queue->other, instr);
 		q_push(queue->other, instr);
 		sort_two(queue, instr);
@@ -100,31 +102,18 @@ void	sort_top(t_queue *queue, size_t size, t_print *instr)
 	free(val);
 }
 
-long	*set_values(t_queue *queue, size_t size)
+void	set_values(t_queue *queue, long *val, size_t size)
 {
-	long	*val;
 	size_t	i;
 
 	i = 0;
-	val = ft_calloc(sizeof(long), size);
+/* 	val = ft_calloc(sizeof(long), size);
 	if (!val)
-		return (NULL);
+		return (free(val), NULL); */
 	while (i < size && i < queue->size)
 	{
 		val[i] = queue->queue[(queue->head + i) % queue->max];
 		i++;
 	}
-	return (val);
 }
 
-void	print_values(long *val, size_t	size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		printf("val[%ld]: %ld\n", i, val[i]);
-		i++;
-	}
-}

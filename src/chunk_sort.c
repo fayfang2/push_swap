@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 15:39:51 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 07:50:31 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/15 11:31:21 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void sort_chunks(t_queue *queue, t_print *instr)
 	chunk->size = stack_a->size;
 	chunk->head = stack_a->head;
 	sort_recursive(chunk, stack_a, instr);
-	free(chunk);
+	free_chunk(chunk);
 }
 
 void sort_recursive(t_chunk *chunk, t_queue *queue, t_print *instr)
@@ -35,42 +35,31 @@ void sort_recursive(t_chunk *chunk, t_queue *queue, t_print *instr)
 	// long	*val;
 	// size_t	size;
 	
-	if (!chunk || chunk->size < 1)
+/* 	if (!chunk || chunk->size < 1)
 	{
 		if (chunk)
 			free_chunk(chunk);
 		return ;
-	}
+	} */
 	stack = set_stack(chunk, queue);
 	// stack_a = (queue->flag == a) ? queue : queue->other;
 	dest = init_chunk();
 	dest->loc = top;
 	dest->flag = a;
 	chunk_totop(chunk, stack);
-	if (chunk->size <= 4)
+	if (chunk->size < 5)
 	{
-		// while(chunk->size--)
-		// {
-		// 	move(chunk, dest, stack, instr);
-		// 	sort_top(stack_a, 4, instr);
-		// }
-		// size = chunk->size + 4;
-		// printf("chunk->size: %ld\n", chunk->size);
-		// val = set_values(stack_a, size);
-		// printf("values before move_back:\n");
-		// print_values(val, size);
 		move_back(chunk, dest, stack, instr);
-		// val = set_values(stack_a, size);
-		// printf("values after move_back:\n");
-		// print_values(val, size);
-		free(chunk);
-		free(dest);
+		// free_chunk(chunk);
+		free_chunk(dest);
 		return ;
 	}
 	split_chunks(chunk, stack, instr);
 	sort_recursive(chunk->max, stack, instr);
 	sort_recursive(chunk->mid, stack, instr);
 	sort_recursive(chunk->min, stack, instr);
+	free_chunk(dest);
+	// free_chunk(chunk);
 }
 
 void	split_chunks(t_chunk *chunk, t_queue *queue, t_print *instr)

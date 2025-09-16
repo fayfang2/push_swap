@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:26:44 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 07:47:50 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/16 09:59:02 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	move(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr);
 void	move_back(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr);
 void	sort_two(t_queue *queue, t_print *instr);
 void	sort_top(t_queue *queue, size_t size, t_print *instr);
-long	*set_values(t_queue *queue, size_t size);
+void	set_values(t_queue *queue, long *val, size_t size);
 
 
 // Errors & freeing

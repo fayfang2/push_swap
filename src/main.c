@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 07:49:13 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/15 08:13:29 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int main(int argc, char **argv)
 		sort_five(stack_a, instr);
 	else
 		sort_chunks(stack_a, instr);
-	printf("\n");
 	final_check(stack_a);
 	print_queue(stack_a);
 	print_instr(instr);
@@ -77,57 +76,5 @@ void	final_check(t_queue *queue)
 	}
 }
 
-void	print_queue(t_queue *queue)
-{
-	size_t	i;
-	size_t	index;
 
-	i = 0;
-	while (i < queue->size)
-	{
-		index = (queue->head + i) % (queue->max);
-		printf("Queue[%ld]: %ld\n", i, queue->queue[index]);
-		i++;
-	}
-	return ;
-}
-
-void	print_queues(t_queue *queue)
-{
-	t_queue	*stack_a;
-	t_queue	*stack_b;
-	size_t	i;
-	size_t	size;
-	size_t	index_a;
-	size_t	index_b;
-
-	i = 0;
-
-	stack_a = (queue->flag == a) ? queue : queue->other;
-	stack_b = (queue->flag == b) ? queue : queue->other;
-	size = (stack_a->size > stack_b->size) ? stack_a->size : stack_b->size;
-	while (i < size)
-	{
-		printf("Queue[%ld]: ", i);
-		if (i< stack_a->size)
-		{
-			index_a = (stack_a->head + i) % (stack_a->max);
-			printf("%ld", stack_a->queue[index_a]);
-		}
-		else
-			printf("NULL");
-		printf("\t ");
-		if (i < stack_b-> size)
-		{
-			index_b = (stack_b->head + i) % (stack_b->max);
-			printf("%ld", stack_b->queue[index_b]);
-		}
-		else
-			printf("NULL");
-		printf("\n");
-		i++;
-	}
-	printf("\tstack_a\tstack_b\n");
-	return ;
-}
 

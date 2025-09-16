@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 15:39:05 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 07:50:11 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/15 07:59:41 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	set_pivots(t_chunk *chunk)
 {
 	long	div;
 	// long	mod;
-    static int iteration = 0;
-    iteration++;
+    // static int iteration = 0;
+    // iteration++;
 	
 	div = chunk->size / 3;
 	// mod = chunk->size % 3;
