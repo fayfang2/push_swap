@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 20:43:32 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/18 12:30:46 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/18 12:54:55 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,39 +55,19 @@ int init_ops(t_print *instr)
 }
 void	add_instr(t_print *instr, char *operation)
 {
-	char	*prev;
-	char	*cur;
-
 	if (!instr || !operation)
 		return ;
-	cur = operation;
-	if (instr->count > 0)
+	if (instr->count > 0 && check_case(instr, operation))
 	{
-		prev = instr->instructions[instr->count - 1];
-		if ((!ft_strcmp(prev, "sa") && !ft_strcmp(cur, "sb")) ||
-			(!ft_strcmp(prev, "sb") && !ft_strcmp(cur, "sa")))
-		{
+		if (check_case(instr, operation) == 1)
 			instr->instructions[instr->count - 1] = instr->operations[ss];
-			return ;
-		}
-		else if ((!ft_strcmp(prev, "ra") && !ft_strcmp(cur, "rb")) ||
-				(!ft_strcmp(prev, "rb") && !ft_strcmp(cur, "ra")))
-		{
+		else if (check_case(instr, operation) == 2)
 			instr->instructions[instr->count - 1] = instr->operations[rr];
-			return ;
-		}
-		else if ((!ft_strcmp(prev, "rra") && !ft_strcmp(cur, "rrb")) ||
-				(!ft_strcmp(prev, "rrb") && !ft_strcmp(cur, "rra")))
-		{
+		else if (check_case(instr, operation) == 3)
 			instr->instructions[instr->count - 1] = instr->operations[rrr];
-			return ;
-		}
-		else if ((!ft_strcmp(prev, "pa") && !ft_strcmp(cur, "pb")) || \
-				(!ft_strcmp(prev, "pb") && !ft_strcmp(cur, "pa")))
-		{
+		else if (check_case(instr, operation) == 4)
 			instr->count--;
-			return ;
-		}
+		return ;
 	}
 	instr->instructions[instr->count] = operation;
 	instr->count++;
@@ -96,6 +76,35 @@ void	add_instr(t_print *instr, char *operation)
 		print_instr (instr);
 		error_msg("Error: exceeding instr limit or entering infinite recursion.\n", NULL, instr, NULL);
 	}
+}
+
+int	check_case(t_print *instr, char *operation)
+{
+	char	*prev;
+	char	*cur;
+
+	if (!instr || !operation)
+		return (0);
+	cur = operation;
+	if (instr->count > 0)
+	{
+		prev = instr->instructions[instr->count - 1];
+		if ((!ft_strcmp(prev, "sa") && !ft_strcmp(cur, "sb")) ||
+			(!ft_strcmp(prev, "sb") && !ft_strcmp(cur, "sa")))\
+			return (1);
+		else if ((!ft_strcmp(prev, "ra") && !ft_strcmp(cur, "rb")) ||
+			(!ft_strcmp(prev, "rb") && !ft_strcmp(cur, "ra")))
+			return (2);
+		else if ((!ft_strcmp(prev, "rra") && !ft_strcmp(cur, "rrb")) ||
+				(!ft_strcmp(prev, "rrb") && !ft_strcmp(cur, "rra")))
+			return (3);
+		else if ((!ft_strcmp(prev, "pa") && !ft_strcmp(cur, "pb")) || \
+				(!ft_strcmp(prev, "pb") && !ft_strcmp(cur, "pa")))
+			return (4);
+		else
+			return (0);
+	}
+	return (0);
 }
 
 

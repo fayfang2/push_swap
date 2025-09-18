@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:26:44 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/18 12:20:51 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/18 12:51:24 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void	free_chunk(t_chunk *chunk);
 // Printing
 void	add_instr(t_print *instr, char *operation);
 void	print_instr(t_print *instr);
-t_print	*optimise_instr(t_print *instr);
+int		check_case(t_print *instr, char *operation);
 int		ft_strcmp(char *s1, char *s2);
 
 // Extras
