@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 20:43:32 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 11:16:54 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/18 12:30:46 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,40 @@ int init_ops(t_print *instr)
 }
 void	add_instr(t_print *instr, char *operation)
 {
-	// char	*prev;
+	char	*prev;
+	char	*cur;
+
 	if (!instr || !operation)
 		return ;
-	// prev = instr->instructions[instr->count - 1];
+	cur = operation;
+	if (instr->count > 0)
+	{
+		prev = instr->instructions[instr->count - 1];
+		if ((!ft_strcmp(prev, "sa") && !ft_strcmp(cur, "sb")) ||
+			(!ft_strcmp(prev, "sb") && !ft_strcmp(cur, "sa")))
+		{
+			instr->instructions[instr->count - 1] = instr->operations[ss];
+			return ;
+		}
+		else if ((!ft_strcmp(prev, "ra") && !ft_strcmp(cur, "rb")) ||
+				(!ft_strcmp(prev, "rb") && !ft_strcmp(cur, "ra")))
+		{
+			instr->instructions[instr->count - 1] = instr->operations[rr];
+			return ;
+		}
+		else if ((!ft_strcmp(prev, "rra") && !ft_strcmp(cur, "rrb")) ||
+				(!ft_strcmp(prev, "rrb") && !ft_strcmp(cur, "rra")))
+		{
+			instr->instructions[instr->count - 1] = instr->operations[rrr];
+			return ;
+		}
+		else if ((!ft_strcmp(prev, "pa") && !ft_strcmp(cur, "pb")) || \
+				(!ft_strcmp(prev, "pb") && !ft_strcmp(cur, "pa")))
+		{
+			instr->count--;
+			return ;
+		}
+	}
 	instr->instructions[instr->count] = operation;
 	instr->count++;
 	if (instr->count > instr->size)
@@ -68,11 +98,26 @@ void	add_instr(t_print *instr, char *operation)
 	}
 }
 
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (0);
+}
+
 /* t_print	*optimise_instr(t_print *instr)
 {
 	size_t	i;
 	t_print	*opti;
-
+	char	**list;
 
 	i = 0;
 	opti = ft_calloc(sizeof(t_print), 1);
@@ -80,14 +125,38 @@ void	add_instr(t_print *instr, char *operation)
 		error_msg("Error: failed to allocate memory for opti.\n", NULL, instr, NULL);
 		
 	opti->size = instr->size;
-	opti->operations = ft_calloc(instr->size, sizeof(char *));
+	opti->instructions = ft_calloc(instr->size, sizeof(char *));
 	if (!opti->instructions)
 		error_msg("Error: failed to initiate instr.\n", NULL, instr, NULL);
 	if (!init_ops(opti))
 		error_msg("Error: failed to initiate opti ops.\n", NULL, instr, NULL);	
-	while (i < instr->count)
+	while (i + 1 < instr->count)
 	{
-		
+		list = instr->instructions;
+		if (ft_strncmp(list[i], "ra", 2))
+			i++;
+		else if ((list[i] == "sa" && list[i + 1] == "sb") || (list[i] == "sb" && list[i + 1] == "sa"))
+		{
+			add_instr(opti, opti->operations[ss]);
+			i++;
+		}
+		else if ((list[i] == "ra" && list[i + 1] == "rb" || (list[i] == "rb" && list[i + 1] =="ra")))
+		{
+			add_instr(opti, opti->operations[rr]);
+			i++;
+		}
+		else if ((list[i] == "rra" && list[i + 1] == "rrb" || (list[i] == "rrb" && list[i + 1] =="rra")))
+		{
+			add_instr(opti, opti->operations[rrr]);
+			i++;
+		}
+		else
+		{
+			opti->instructions[opti->count] = instr->instructions[i];
+		}
+		opti->count++;
+		i++;
 	}
+	return (opti);
 } */
 

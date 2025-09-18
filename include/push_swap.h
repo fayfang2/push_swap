@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:26:44 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/16 09:59:02 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/18 12:20:51 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ void	sort_two(t_queue *queue, t_print *instr);
 void	sort_top(t_queue *queue, size_t size, t_print *instr);
 void	set_values(t_queue *queue, long *val, size_t size);
 
-
 // Errors & freeing
 void	error_msg(char *msg, t_queue *stack, t_print *instr, t_chunk *chunk);
 void	free_stack(t_queue *stack);
@@ -155,6 +154,8 @@ void	free_chunk(t_chunk *chunk);
 // Printing
 void	add_instr(t_print *instr, char *operation);
 void	print_instr(t_print *instr);
+t_print	*optimise_instr(t_print *instr);
+int		ft_strcmp(char *s1, char *s2);
 
 // Extras
 void	print_queue(t_queue *queue);
