@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:18:11 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/16 07:06:56 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 16:57:34 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	free_chunk(t_chunk *chunk)
 		free_chunk(chunk->max);
 	free(chunk);
 }
-
 
 /* void	error_msg(char *msg, size_t count, ...)
 {

@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:26:44 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/18 12:51:24 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:00:07 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ typedef enum e_flag
 {
 	a = 'a',
 	b = 'b'
-} t_flag;
+}	t_flag;
 
 typedef enum e_loc
 {
 	top,
 	bottom
-} t_loc;
+}	t_loc;
 
 typedef enum e_ops
 {
@@ -46,9 +46,9 @@ typedef enum e_ops
 	rrb,
 	rrr,
 	ops_count
-} t_ops;
+}	t_ops;
 
-typedef struct	s_chunk
+typedef struct s_chunk
 {
 	t_flag			flag;
 	t_loc			loc;
@@ -60,7 +60,7 @@ typedef struct	s_chunk
 	struct s_chunk	*min;
 	struct s_chunk	*mid;
 	struct s_chunk	*max;
-} t_chunk;
+}	t_chunk;
 
 typedef struct s_print
 {
@@ -68,9 +68,9 @@ typedef struct s_print
 	char	**operations;
 	size_t	size;
 	size_t	count;
-} t_print;
+}	t_print;
 
-typedef struct	s_queue
+typedef struct s_queue
 {
 	t_flag			flag;
 	size_t			max;
@@ -78,8 +78,8 @@ typedef struct	s_queue
 	long			*queue;
 	long			head;
 	long			tail;
-	struct s_queue *other;
-} t_queue;
+	struct s_queue	*other;
+}	t_queue;
 
 //Parsing input and converting to array
 
@@ -101,8 +101,8 @@ t_print	*init_instr(size_t size);
 int		init_ops(t_print *instr);
 
 // Deque operations using circular buffer aray
-int		isFull(t_queue *queue);
-int		isEmpty(t_queue *queue);
+int		isfull(t_queue *queue);
+int		isempty(t_queue *queue);
 void	qadd_back(t_queue *queue, long num);
 void	qadd_front(t_queue *queue, long num);
 long	qdel_back(t_queue *queue);

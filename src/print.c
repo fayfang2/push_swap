@@ -6,13 +6,26 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 08:03:01 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 08:04:02 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:04:11 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	print_queue(t_queue *queue)
+void	print_instr(t_print *instr)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < instr->count)
+	{
+		ft_printf("%s\n", instr->instructions[i]);
+		i++;
+	}
+	return ;
+}
+
+/* void	print_queue(t_queue *queue)
 {
 	size_t	i;
 	size_t	index;
@@ -25,9 +38,21 @@ void	print_queue(t_queue *queue)
 		i++;
 	}
 	return ;
-}
+} */
 
-void	print_queues(t_queue *queue)
+/* void	print_values(long *val, size_t	size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		printf("val[%ld]: %ld\n", i, val[i]);
+		i++;
+	}
+} */
+
+/* void	print_queues(t_queue *queue)
 {
 	t_queue	*stack_a;
 	t_queue	*stack_b;
@@ -64,30 +89,4 @@ void	print_queues(t_queue *queue)
 	}
 	printf("\tstack_a\tstack_b\n");
 	return ;
-}
-
-void	print_instr(t_print *instr)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < instr->count)
-	{
-		ft_printf("%s\n", instr->instructions[i]);
-		i++;
-	}
-	printf("Instructions: %ld\n", instr->count);
-	return ;
-}
-
-void	print_values(long *val, size_t	size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		printf("val[%ld]: %ld\n", i, val[i]);
-		i++;
-	}
-}
+} */

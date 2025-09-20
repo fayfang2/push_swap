@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 11:42:17 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/18 12:21:02 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:14:45 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	check_sorted(long *array, size_t size)
 	size_t	i;
 
 	i = 0;
-	while (i < size)
+	while (i + 1 < size)
 	{
 		if (array[i] > array[i + 1])
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/18 11:39:30 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:12:13 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int main(int argc, char **argv)
 {
 	t_print	*instr;
-	// t_print	*opti;
 	t_queue	*stack_a;
 	t_queue	*stack_b;
 	size_t	size;
@@ -37,13 +36,9 @@ int main(int argc, char **argv)
 	else
 		sort_chunks(stack_a, instr);
 	final_check(stack_a);
-	print_queue(stack_a);
-	// opti = optimise_instr(instr);
 	print_instr(instr);
-	// print_instr(opti);
 	free_stack(stack_a);
 	free_instr(instr);
-	return (0);
 }
 
 t_queue	*init_stack(size_t size, char **argv, t_flag c)

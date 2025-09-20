@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 15:39:07 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/13 16:16:17 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:00:26 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_chunk	*init_chunk(void)
 {
-	t_chunk *chunk;
+	t_chunk	*chunk;
 
 	chunk = ft_calloc(sizeof(t_chunk), 1);
 	if (!chunk)

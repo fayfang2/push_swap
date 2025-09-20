@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 15:39:05 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 07:59:41 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:05:46 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,19 @@ void	set_loc(t_chunk *chunk)
 	if (!chunk->max)
 		chunk->max = init_chunk();
 	chunk->min->flag = b;
-	chunk->mid->flag = (chunk->flag == a) ? b : a;
+	chunk->mid->flag = a;
+	if (chunk->flag == a)
+		chunk->mid->flag = b;
 	chunk->max->flag = a;
-	chunk->min->loc = (chunk->flag == b && chunk->loc == bottom) ? top : bottom;
-	chunk->mid->loc = (chunk->flag == a) ? top : bottom;
-	chunk->max->loc = (chunk->flag == a && chunk->loc == top) ? bottom : top;
+	chunk->min->loc = bottom;
+	if (chunk->flag == b && chunk->loc == bottom)
+		chunk->min->loc = top;
+	chunk->mid->loc = bottom; 
+	if (chunk->flag == a)
+		chunk->mid->loc = top;
+	chunk->max->loc = top;
+	if (chunk->flag == a && chunk->loc == top)
+		chunk->max->loc = bottom;
 }
 
 void	set_pivots(t_chunk *chunk)

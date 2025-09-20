@@ -6,18 +6,21 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 15:39:51 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/15 11:31:21 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:01:56 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void sort_chunks(t_queue *queue, t_print *instr)
+void	sort_chunks(t_queue *queue, t_print *instr)
 {
 	t_chunk	*chunk;
 	t_queue	*stack_a;
 
-	stack_a = (queue->flag == a) ? queue : queue-> other;
+	if (queue->flag == a)
+		stack_a = queue;
+	else
+		stack_a = queue->other;
 	chunk = init_chunk();
 	chunk->flag = stack_a->flag;
 	chunk->loc = top;
@@ -27,22 +30,12 @@ void sort_chunks(t_queue *queue, t_print *instr)
 	free_chunk(chunk);
 }
 
-void sort_recursive(t_chunk *chunk, t_queue *queue, t_print *instr)
+void	sort_recursive(t_chunk *chunk, t_queue *queue, t_print *instr)
 {
 	t_queue	*stack;
-	// t_queue	*stack_a;
 	t_chunk	*dest;
-	// long	*val;
-	// size_t	size;
-	
-/* 	if (!chunk || chunk->size < 1)
-	{
-		if (chunk)
-			free_chunk(chunk);
-		return ;
-	} */
+
 	stack = set_stack(chunk, queue);
-	// stack_a = (queue->flag == a) ? queue : queue->other;
 	dest = init_chunk();
 	dest->loc = top;
 	dest->flag = a;
@@ -50,7 +43,6 @@ void sort_recursive(t_chunk *chunk, t_queue *queue, t_print *instr)
 	if (chunk->size < 5)
 	{
 		move_back(chunk, dest, stack, instr);
-		// free_chunk(chunk);
 		free_chunk(dest);
 		return ;
 	}
@@ -59,7 +51,6 @@ void sort_recursive(t_chunk *chunk, t_queue *queue, t_print *instr)
 	sort_recursive(chunk->mid, stack, instr);
 	sort_recursive(chunk->min, stack, instr);
 	free_chunk(dest);
-	// free_chunk(chunk);
 }
 
 void	split_chunks(t_chunk *chunk, t_queue *queue, t_print *instr)
@@ -72,7 +63,6 @@ void	split_chunks(t_chunk *chunk, t_queue *queue, t_print *instr)
 	set_loc(chunk);
 	set_pivots(chunk);
 	stack = set_stack(chunk, queue);
-	// print_chunk(chunk, stack);
 	while (i < chunk->size)
 	{
 		set_head(chunk, stack);
@@ -85,22 +75,9 @@ void	split_chunks(t_chunk *chunk, t_queue *queue, t_print *instr)
 			move(chunk, chunk->max, stack, instr);
 		i++;
 	}
-/* 	if (chunk->min->size + chunk->mid->size + chunk->max->size != chunk->size)
-		error_msg("Error: not updating sizes or moving values correctly.\n", queue, instr, chunk); */
-/* 	printf("\nChunk max\n");
-	printf("loc: %d, flag: %c, size: %ld\n", chunk->max->loc, chunk->max->flag, chunk->max->size);
-	print_chunk(chunk->max, stack);
-	printf("\nChunk mid\n");
-	printf("loc: %d, flag: %c, size: %ld\n", chunk->mid->loc, chunk->mid->flag, chunk->mid->size);
-	print_chunk(chunk->mid, stack);
-	printf("\nChunk min\n");
-	printf("loc: %d, flag: %c, size: %ld\n", chunk->min->loc, chunk->min->flag, chunk->min->size);
-	print_chunk(chunk->min, stack);
-	print_queues(stack);
-	printf("\n\n"); */
 }
 
-void	print_chunk(t_chunk *chunk, t_queue *queue)
+/* void	print_chunk(t_chunk *chunk, t_queue *queue)
 {
 	size_t	i;
 	size_t	j;
@@ -135,4 +112,4 @@ void	print_chunk(t_chunk *chunk, t_queue *queue)
 	}
 	printf("\n");
 	free(nbr);
-}
+} */
