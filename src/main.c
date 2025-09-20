@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:21:39 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:39:24 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ int	main(int argc, char **argv)
 t_queue	*init_stack(size_t size, char **argv, t_flag c)
 {
 	t_queue	*stack;
-	long	indices[size];
+	long	*indices;
 
 	stack = ft_calloc(sizeof(t_queue), 1);
 	if (!stack)
 		error_msg("Error: failed to allocate memory.\n", stack, NULL, NULL);
+	indices = init_array(size);
 	if (c == a)
 	{
 		parse(size, argv, indices);
@@ -56,7 +57,18 @@ t_queue	*init_stack(size_t size, char **argv, t_flag c)
 	}
 	else if (c == b)
 		init_queue(stack, size, NULL, c);
+	free(indices);
 	return (stack);
+}
+
+long	*init_array(size_t size)
+{
+	long	*array;
+
+	array = ft_calloc(sizeof(long), size);
+	if (!array)
+		error_msg("Error: failed to allocate memory.\n", NULL, NULL, NULL);
+	return (array);
 }
 
 void	final_check(t_queue *queue)

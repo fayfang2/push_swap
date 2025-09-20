@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:29:48 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:20:29 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:39:21 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	parse(size_t size, char **argv, long *indices)
 {
-	long	unsorted[size];
-	long	sorted[size];
+	long	*unsorted;
+	long	*sorted;
 	size_t	i;
 
 	i = 0;
+	unsorted = init_array(size);
+	sorted = init_array(size);
 	while (i < size)
 	{
 		if (!check_format(argv[i + 1]))
@@ -35,7 +37,7 @@ void	parse(size_t size, char **argv, long *indices)
 	if (check_dup(sorted, size))
 		error_msg("Error: contains duplicates.\n", NULL, NULL, NULL);
 	normalize(unsorted, sorted, indices, size);
-	return ;
+	return (free(unsorted), free(sorted));
 }
 
 void	quicksort(long *array, int start, int end)

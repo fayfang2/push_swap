@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:16:57 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:28:43 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:41:15 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,17 @@ void	move(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr)
 void	move_back(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr)
 {
 	t_queue	*stack;
+	size_t	max;
 	size_t	i;
 
+	max = 4;
+	if (queue->size < 4)
+		max = queue->size;
 	stack = set_stack(dest, queue);
 	i = 0;
 	if (src->flag == dest->flag && src->loc == dest->loc)
 	{
-		sort_top(stack, src->size, instr);
+		sort_top(stack, src->size, max, instr);
 		return ;
 	}
 	while (i < src->size)
@@ -54,7 +58,7 @@ void	move_back(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr)
 		move(src, dest, queue, instr);
 		i++;
 	}
-	sort_top(stack, src->size, instr);
+	sort_top(stack, src->size, max, instr);
 }
 
 void	sort_two(t_queue *queue, t_print *instr)
@@ -69,17 +73,11 @@ void	sort_two(t_queue *queue, t_print *instr)
 		q_swap(queue, instr);
 }
 
-void	sort_top(t_queue *queue, size_t size, t_print *instr)
+void	sort_top(t_queue *queue, size_t size, size_t max, t_print *instr)
 {
 	long	*val;
-	size_t	max;
 
-	max = 4;
-	if (queue->size < 4)
-		max = queue->size;
-	val = ft_calloc(sizeof(long), max);
-	if (!val)
-		return (free(val));
+	val = init_array(max);
 	set_values(queue, val, max);
 	if (check_sorted(val, max))
 		return (free(val));

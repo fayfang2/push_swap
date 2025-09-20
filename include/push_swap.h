@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:26:44 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:00:07 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:41:31 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int		check_dup(long *array, size_t size);
 
 // Initialising stacks and instructions
 t_queue	*init_stack(size_t size, char **argv, t_flag c);
+long	*init_array(size_t size);
 int		init_queue(t_queue *queue, size_t max_size, long *indices, t_flag c);
 t_print	*init_instr(size_t size);
 int		init_ops(t_print *instr);
@@ -142,7 +143,7 @@ void	set_head(t_chunk *chunk, t_queue *queue);
 void	move(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr);
 void	move_back(t_chunk *src, t_chunk *dest, t_queue *queue, t_print *instr);
 void	sort_two(t_queue *queue, t_print *instr);
-void	sort_top(t_queue *queue, size_t size, t_print *instr);
+void	sort_top(t_queue *queue, size_t size, size_t max, t_print *instr);
 void	set_values(t_queue *queue, long *val, size_t size);
 
 // Errors & freeing
