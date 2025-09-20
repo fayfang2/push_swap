@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:29:28 by fayfang           #+#    #+#             */
-/*   Updated: 2025/08/18 15:56:45 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:22:28 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ long	find_min(t_queue *queue)
 	size_t	i;
 
 	i = 0;
-	if (!queue || queue->size  == 0)
+	if (!queue || queue->size == 0)
 		return (0);
 	current = queue->head;
 	min = queue->queue[current];

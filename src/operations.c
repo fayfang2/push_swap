@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 14:23:12 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/05 16:34:40 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:22:07 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	q_rotate(t_queue *queue, t_print *instr)
 	return ;
 }
 
-void q_revrotate(t_queue *queue, t_print *instr)
+void	q_revrotate(t_queue *queue, t_print *instr)
 {
 	long	temp;
 

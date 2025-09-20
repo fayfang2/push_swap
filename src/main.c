@@ -6,13 +6,13 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:12:13 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:21:39 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_print	*instr;
 	t_queue	*stack_a;
@@ -56,12 +56,12 @@ t_queue	*init_stack(size_t size, char **argv, t_flag c)
 	}
 	else if (c == b)
 		init_queue(stack, size, NULL, c);
-	return (stack);	
+	return (stack);
 }
 
 void	final_check(t_queue *queue)
 {
-	size_t i;
+	size_t	i;
 	long	nbr;
 
 	i = 0;
@@ -73,6 +73,3 @@ void	final_check(t_queue *queue)
 		i++;
 	}
 }
-
-
-
