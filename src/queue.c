@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:27:06 by fayfang           #+#    #+#             */
-/*   Updated: 2025/08/26 16:06:59 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 16:58:36 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,18 @@ int	init_queue(t_queue *queue, size_t max_size, long *indices, t_flag c)
 	queue->tail = 0;
 	while (i < max_size && indices != NULL)
 		qadd_back(queue, indices[i++]);
+	queue->other = NULL;
 	return (1);
 }
 
-int	isFull(t_queue *queue)
+int	isfull(t_queue *queue)
 {
 	if (queue->size == queue->max)
 		return (1);
 	return (0);
 }
 
-int	isEmpty(t_queue *queue)
+int	isempty(t_queue *queue)
 {
 	if (queue->size == 0)
 		return (1);

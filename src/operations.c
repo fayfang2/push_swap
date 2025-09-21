@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 14:23:12 by fayfang           #+#    #+#             */
-/*   Updated: 2025/08/26 16:14:07 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 17:22:07 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ void	q_swap(t_queue *queue, t_print *instr)
 	return ;
 }
 
-void	q_push(t_queue *src, t_queue *dest, t_print *instr)
+void	q_push(t_queue *src, t_print *instr)
 {
 	long	temp;
+	t_queue	*dest;
 
+	dest = src->other;
 	if (src->size < 1)
 		return ;
 	temp = qdel_front(src);
@@ -59,7 +61,7 @@ void	q_rotate(t_queue *queue, t_print *instr)
 	return ;
 }
 
-void q_revrotate(t_queue *queue, t_print *instr)
+void	q_revrotate(t_queue *queue, t_print *instr)
 {
 	long	temp;
 

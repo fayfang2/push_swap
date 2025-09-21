@@ -6,18 +6,20 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:18:11 by fayfang           #+#    #+#             */
-/*   Updated: 2025/08/23 15:14:51 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/20 16:57:34 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	error_msg(char *msg, t_queue *stack, t_print *instr)
+void	error_msg(char *msg, t_queue *stack, t_print *instr, t_chunk *chunk)
 {
 	if (stack)
 		free_stack(stack);
 	if (instr)
 		free_instr(instr);
+	if (chunk)
+		free_chunk(chunk);
 	if (msg)
 		ft_putstr_fd(msg, 2);
 	exit (1);
@@ -27,6 +29,12 @@ void	free_stack(t_queue *stack)
 {
 	if (stack->queue)
 		free(stack->queue);
+	if (stack->other)
+	{
+		if (stack->other->queue)
+			free(stack->other->queue);
+		free(stack->other);
+	}
 	free(stack);
 }
 
@@ -39,6 +47,17 @@ void	free_instr(t_print	*instr)
 	if (instr->operations)
 		free(instr->operations);
 	free(instr);
+}
+
+void	free_chunk(t_chunk *chunk)
+{
+	if (chunk->min)
+		free_chunk(chunk->min);
+	if (chunk->mid)
+		free_chunk(chunk->mid);
+	if (chunk->max)
+		free_chunk(chunk->max);
+	free(chunk);
 }
 
 /* void	error_msg(char *msg, size_t count, ...)
