@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:29:48 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:39:21 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/08/26 17:23:36 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 void	parse(size_t size, char **argv, long *indices)
 {
-	long	*unsorted;
-	long	*sorted;
+	long	unsorted[size];
+	long	sorted[size];
 	size_t	i;
 
 	i = 0;
-	unsorted = init_array(size);
-	sorted = init_array(size);
 	while (i < size)
 	{
 		if (!check_format(argv[i + 1]))
-			error_msg("Error: input incorrect format.\n", NULL, NULL, NULL);
+			error_msg("Error: input incorrect format.\n", NULL, NULL);
 		unsorted[i] = ft_atol(argv[i + 1]);
 		if (unsorted[i] < INT_MIN || unsorted[i] > INT_MAX)
-			error_msg("Error: exceeds integer limits.\n", NULL, NULL, NULL);
+			error_msg("Error: exceeds integer limits.\n", NULL, NULL);
 		sorted[i] = unsorted[i];
 		i++;
 	}
 	if (check_sorted(unsorted, size))
-		error_msg("Error: Array is sorted.\n", NULL, NULL, NULL);
+		error_msg("Error: Array is sorted. No operations needed.\n", NULL, NULL);
 	quicksort(sorted, 0, size - 1);
 	if (check_dup(sorted, size))
-		error_msg("Error: contains duplicates.\n", NULL, NULL, NULL);
+		error_msg("Error: contains duplicates.\n", NULL, NULL);
 	normalize(unsorted, sorted, indices, size);
-	return (free(unsorted), free(sorted));
+	return ;
 }
 
 void	quicksort(long *array, int start, int end)
@@ -80,12 +78,13 @@ void	normalize(long *unsorted, long *sorted, long *indices, size_t size)
 	while (j < size)
 	{
 		i = 0;
-		while (i < size)
+		while(i < size)
 		{
 			if (sorted[i] == unsorted[j])
 				indices[j] = i;
 			i++;
 		}
+		printf("Indices[%ld]:%ld\n", j, indices[j]);
 		j++;
 	}
 }
