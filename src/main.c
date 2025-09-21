@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:39:24 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/21 08:55:45 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	size = argc - 1;
 	if (size < 1)
-		error_msg("Error: not enough arguments.\n", NULL, NULL, NULL);
+		error_msg("Error\n", NULL, NULL, NULL);
 	stack_a = init_stack(size, argv, a);
 	stack_b = init_stack(size, argv, b);
 	stack_a->other = stack_b;
@@ -48,7 +48,7 @@ t_queue	*init_stack(size_t size, char **argv, t_flag c)
 
 	stack = ft_calloc(sizeof(t_queue), 1);
 	if (!stack)
-		error_msg("Error: failed to allocate memory.\n", stack, NULL, NULL);
+		error_msg("Error\n", stack, NULL, NULL);
 	indices = init_array(size);
 	if (c == a)
 	{
@@ -67,7 +67,7 @@ long	*init_array(size_t size)
 
 	array = ft_calloc(sizeof(long), size);
 	if (!array)
-		error_msg("Error: failed to allocate memory.\n", NULL, NULL, NULL);
+		error_msg("Error\n", NULL, NULL, NULL);
 	return (array);
 }
 
@@ -81,7 +81,7 @@ void	final_check(t_queue *queue)
 	{
 		nbr = queue->queue[(queue->head + i) % queue->max];
 		if (nbr != (long)i)
-			error_msg("Error: stack is not sorted.\n", queue, NULL, NULL);
+			error_msg("Error\n", queue, NULL, NULL);
 		i++;
 	}
 }

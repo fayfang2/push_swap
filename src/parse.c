@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:29:48 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:39:21 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/21 08:56:54 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ void	parse(size_t size, char **argv, long *indices)
 	while (i < size)
 	{
 		if (!check_format(argv[i + 1]))
-			error_msg("Error: input incorrect format.\n", NULL, NULL, NULL);
+			error_msg("Error\n", NULL, NULL, NULL);
 		unsorted[i] = ft_atol(argv[i + 1]);
 		if (unsorted[i] < INT_MIN || unsorted[i] > INT_MAX)
-			error_msg("Error: exceeds integer limits.\n", NULL, NULL, NULL);
+			error_msg("Error\n", NULL, NULL, NULL);
 		sorted[i] = unsorted[i];
 		i++;
 	}
 	if (check_sorted(unsorted, size))
-		error_msg("Error: Array is sorted.\n", NULL, NULL, NULL);
+		error_msg("\n", NULL, NULL, NULL);
 	quicksort(sorted, 0, size - 1);
 	if (check_dup(sorted, size))
-		error_msg("Error: contains duplicates.\n", NULL, NULL, NULL);
+		error_msg("Error\n", NULL, NULL, NULL);
 	normalize(unsorted, sorted, indices, size);
 	return (free(unsorted), free(sorted));
 }

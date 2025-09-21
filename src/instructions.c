@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 20:43:32 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:28:13 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/21 08:57:32 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ t_print	*init_instr(size_t size)
 		instr->size = 10000;
 	instr->instructions = ft_calloc(instr->size, sizeof(char *));
 	if (!instr->instructions)
-		error_msg("Error: failed to initiate instr.\n", NULL, instr, NULL);
+		error_msg("Error\n", NULL, instr, NULL);
 	if (!init_ops(instr))
-		error_msg("Error: failed to initiate ops.\n", NULL, instr, NULL);
+		error_msg("Error\n", NULL, instr, NULL);
 	return (instr);
 }
 
@@ -40,7 +40,7 @@ int	init_ops(t_print *instr)
 {
 	instr->operations = ft_calloc(ops_count, sizeof(char *));
 	if (!instr->operations)
-		error_msg("Error: failed to initiate instr.\n", NULL, instr, NULL);
+		error_msg("Error.\n", NULL, instr, NULL);
 	instr->operations[sa] = "sa";
 	instr->operations[sb] = "sb";
 	instr->operations[ss] = "ss";
@@ -76,7 +76,7 @@ void	add_instr(t_print *instr, char *operation)
 	if (instr->count > instr->size)
 	{
 		print_instr (instr);
-		error_msg("Error: exceeding instr limit.\n", NULL, instr, NULL);
+		error_msg("Error\n", NULL, instr, NULL);
 	}
 }
 

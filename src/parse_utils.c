@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 11:42:17 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:14:45 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/21 08:56:12 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ int	check_dup(long *array, size_t size)
 	while (i < size - 1)
 	{
 		if (array[i] == array[i + 1])
-		{
-			printf("Match for value %ld\n", array[i]);
 			return (1);
-		}
 		i++;
 	}
 	return (0);
