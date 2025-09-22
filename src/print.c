@@ -6,24 +6,11 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 08:03:01 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:04:11 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/22 14:08:30 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-void	print_instr(t_print *instr)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < instr->count)
-	{
-		ft_printf("%s\n", instr->instructions[i]);
-		i++;
-	}
-	return ;
-}
 
 /* void	print_queue(t_queue *queue)
 {
@@ -89,4 +76,41 @@ void	print_instr(t_print *instr)
 	}
 	printf("\tstack_a\tstack_b\n");
 	return ;
+} */
+
+/* void	print_chunk(t_chunk *chunk, t_queue *queue)
+{
+	size_t	i;
+	size_t	j;
+	t_queue	*stack;
+	long	*nbr;
+
+	i = 0;
+	j = 0;
+	stack = set_stack(chunk, queue);
+	set_head(chunk, stack);
+	nbr = ft_calloc(sizeof(long), chunk->size);
+	if (!nbr)
+		return ;
+	printf("Print unsorted:\t");
+	while (i < chunk->size)
+	{
+		nbr[i] = stack->queue[(chunk->head + j) % stack->max];
+		printf("%ld ", nbr[i]);
+		i++;
+		if (chunk->loc == top)
+			j++;
+		else if (chunk->loc == bottom)
+			j--;
+	}
+	quicksort(nbr, 0, chunk->size - 1);
+	i = 0;
+	printf("\nPrint sorted:\t");
+	while (i < chunk->size)
+	{
+		printf("%ld ", nbr[i]);
+		i++;
+	}
+	printf("\n");
+	free(nbr);
 } */

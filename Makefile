@@ -6,7 +6,7 @@
 #    By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 13:49:50 by fayfang           #+#    #+#              #
-#    Updated: 2025/08/10 15:49:20 by fayfang          ###   ########.fr        #
+#    Updated: 2025/09/22 16:03:14 by fayfang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,31 @@ CC		=	cc
 CFLAGS	=	-Wall -Werror -Wextra -Iinclude -Ilibft/include
 RM		=	rm -rf
 
-SRC		=	$(wildcard $(SRCDIR)/*.c)
+FILES	=	chunks_utils \
+			chunks \
+			error \
+			instructions \
+			main \
+			move \
+			operations \
+			parse_utils \
+			parse \
+			print \
+			queue_utils \
+			queue \
+			sort_small \
+			sort_utils
+
+SRC		=	$(addprefix $(SRCDIR)/, $(addsuffix .c, $(FILES)))
 OBJ		=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
 LIBFT	=	libft
 LIB		=	$(LIBFT)/libft.a
-LIBSRC	=	$(wildcard $(LIBFT)/$(SRCDIR)/*.c)
+# LIBSRC	=	$(addprefix $(LIBFT)/$(SRCDIR)/, $(addsuffix .c, $(LIBFILES)))
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ) $(LIBSRC)
+$(NAME):	$(OBJ) 
 	@make -C $(LIBFT)
 	$(CC) $(OBJ) -o $(NAME) $(LIB)
 

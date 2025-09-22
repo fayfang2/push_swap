@@ -6,11 +6,20 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 15:39:05 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:19:07 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/22 14:10:01 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+void	chunk_totop(t_chunk *chunk, t_queue *queue)
+{
+	t_queue	*stack;
+
+	stack = set_stack(chunk, queue);
+	if (chunk->size == stack->size && chunk->loc == bottom)
+		chunk->loc = top;
+}
 
 t_queue	*set_stack(t_chunk *chunk, t_queue *queue)
 {
