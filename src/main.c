@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/21 08:55:45 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/30 01:12:16 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	size = argc - 1;
 	if (size < 1)
-		error_msg("Error\n", NULL, NULL, NULL);
+		error_msg("\n", NULL, NULL, NULL);
 	stack_a = init_stack(size, argv, a);
 	stack_b = init_stack(size, argv, b);
 	stack_a->other = stack_b;
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	instr = init_instr(size);
 	if (check_reversed(stack_a))
 		sort_reversed(stack_a, instr);
-	else if (stack_a->size == 3)
+	else if (stack_a->size < 4)
 		sort_three(stack_a, instr);
 	else if (stack_a->size < 6)
 		sort_five(stack_a, instr);

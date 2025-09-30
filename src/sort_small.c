@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 11:08:28 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:22:47 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/09/30 01:21:37 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,16 @@
 void	sort_reversed(t_queue *queue, t_print *instr)
 {
 	t_queue	*other;
+	size_t	next;
 
 	other = queue->other;
+	next = (queue->head + 1) % (queue->max);
+	if (queue->size == 2)
+	{
+		if (queue->queue[queue->head] > queue->queue[next])
+			q_swap(queue, instr);
+		return ;
+	}
 	while (queue->size > 3)
 	{
 		q_revrotate(queue, instr);
