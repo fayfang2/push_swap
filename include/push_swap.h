@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:26:44 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 17:41:31 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:28:40 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_queue
 //Parsing input and converting to array
 
 void	parse(size_t size, char **argv, long *array);
+void	checks(long *unsorted, long *sorted, long *indices, size_t size);
 void	quicksort(long *array, int start, int end);
 int		partition(long *array, int start, int end);
 void	normalize(long *unsorted, long *sorted, long *indices, size_t size);
@@ -148,6 +149,7 @@ void	set_values(t_queue *queue, long *val, size_t size);
 
 // Errors & freeing
 void	error_msg(char *msg, t_queue *stack, t_print *instr, t_chunk *chunk);
+void 	free_arrays(long *unsorted, long *sorted, long *indices);
 void	free_stack(t_queue *stack);
 void	free_instr(t_print *instr);
 void	free_chunk(t_chunk *chunk);

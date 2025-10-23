@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:18:11 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/20 16:57:34 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:28:24 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ void	error_msg(char *msg, t_queue *stack, t_print *instr, t_chunk *chunk)
 	if (msg)
 		ft_putstr_fd(msg, 2);
 	exit (1);
+}
+
+void	free_arrays(long *unsorted, long *sorted, long *indices)
+{
+	free(unsorted);
+	free(sorted);
+	free(indices);
 }
 
 void	free_stack(t_queue *stack)

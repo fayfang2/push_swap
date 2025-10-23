@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/09/30 01:12:16 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:27:49 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	size = argc - 1;
 	if (size < 1)
-		error_msg("\n", NULL, NULL, NULL);
+		error_msg("Error\n", NULL, NULL, NULL);
 	stack_a = init_stack(size, argv, a);
 	stack_b = init_stack(size, argv, b);
 	stack_a->other = stack_b;
@@ -35,7 +35,6 @@ int	main(int argc, char **argv)
 		sort_five(stack_a, instr);
 	else
 		sort_chunks(stack_a, instr);
-	final_check(stack_a);
 	print_instr(instr);
 	free_stack(stack_a);
 	free_instr(instr);
@@ -71,7 +70,7 @@ long	*init_array(size_t size)
 	return (array);
 }
 
-void	final_check(t_queue *queue)
+/* void	final_check(t_queue *queue)
 {
 	size_t	i;
 	long	nbr;
@@ -84,4 +83,4 @@ void	final_check(t_queue *queue)
 			error_msg("Error\n", queue, NULL, NULL);
 		i++;
 	}
-}
+} */
