@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:40 by fayfang           #+#    #+#             */
-/*   Updated: 2025/10/23 11:27:49 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:44:31 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ t_queue	*init_stack(size_t size, char **argv, t_flag c)
 	indices = init_array(size);
 	if (c == a)
 	{
-		parse(size, argv, indices);
+		if (!parse(size, argv, indices))
+		{
+			free(indices);
+			error_msg("Error/n", stack, NULL, NULL);
+		}
 		init_queue(stack, size, indices, c);
 	}
 	else if (c == b)

@@ -6,13 +6,13 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:29:48 by fayfang           #+#    #+#             */
-/*   Updated: 2025/10/23 11:41:03 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:52:04 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	parse(size_t size, char **argv, long *indices)
+int	parse(size_t size, char **argv, long *indices)
 {
 	long	*unsorted;
 	long	*sorted;
@@ -24,37 +24,28 @@ void	parse(size_t size, char **argv, long *indices)
 	while (i < size)
 	{
 		if (!check_format(argv[i + 1]) || !ft_strcmp(argv[i + 1], "-") || !ft_strcmp(argv[i + 1], "+"))
-		{
-			free_arrays(unsorted, sorted, indices);
-			error_msg("Error\n", NULL, NULL, NULL);
-		}
+			return (free_arrays(unsorted, sorted));
 		unsorted[i] = ft_atol(argv[i + 1]);
 		if (unsorted[i] < INT_MIN || unsorted[i] > INT_MAX)
-		{
-			free_arrays(unsorted, sorted, indices);
-			error_msg("Error\n", NULL, NULL, NULL);
-		}
+			return (free_arrays(unsorted, sorted));
 		sorted[i] = unsorted[i];
 		i++;
 	}
-	checks(unsorted, sorted, indices, size);
-	free_arrays(unsorted, sorted, NULL);
+	if (!checks(unsorted, sorted, indices, size))
+		return (0);
+	free_arrays(unsorted, sorted);
+	return (1);
 }
 
-void	checks(long *unsorted, long *sorted, long *indices, size_t size)
+int	checks(long *unsorted, long *sorted, long *indices, size_t size)
 {
 	if (check_sorted(unsorted, size))
-	{
-		free_arrays(unsorted, sorted, indices);
-		error_msg("\n", NULL, NULL, NULL);
-	}
+		return (free_arrays(unsorted, sorted));
 	quicksort(sorted, 0, size - 1);
 	if (check_dup(sorted, size))
-	{
-		free_arrays(unsorted, sorted, indices);
-		error_msg("Error\n", NULL, NULL, NULL);
-	}
+		return (free_arrays(unsorted, sorted));
 	normalize(unsorted, sorted, indices, size);
+	return (1);
 }
 
 void	quicksort(long *array, int start, int end)
