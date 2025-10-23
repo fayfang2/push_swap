@@ -6,7 +6,7 @@
 /*   By: fayfang <fayfang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:29:48 by fayfang           #+#    #+#             */
-/*   Updated: 2025/10/23 10:12:05 by fayfang          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:11:40 by fayfang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse(size_t size, char **argv, long *indices)
 	sorted = init_array(size);
 	while (i < size)
 	{
-		if (!check_format(argv[i + 1]) || ft_strcmp(argv[i + 1], "-") || ft_strcmp(argv[i + 1], "+"))
+		if (!check_format(argv[i + 1]) || !ft_strcmp(argv[i + 1], "-") || !ft_strcmp(argv[i + 1], "+"))
 			error_msg("Error\n", NULL, NULL, NULL);
 		unsorted[i] = ft_atol(argv[i + 1]);
 		if (unsorted[i] < INT_MIN || unsorted[i] > INT_MAX)
