@@ -1,0 +1,13 @@
+# Files to ignore. #
+/build/
+/fdf
+*.o
+*.a
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_store
+.DS_store?
